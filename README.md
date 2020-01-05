@@ -1,4 +1,4 @@
-![]()
+![](https://github.com/sucyfer/asciirndsh/blob/master/screenshots/Screenshot_1.png)
 
 # asciirndsh
 Simple bash script for generating random ascii art
