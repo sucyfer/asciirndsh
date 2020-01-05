@@ -32,4 +32,6 @@ Options:
   -rmc, --remove-category                          remove category and all art under it
   --<category>                                     run the desired category of art without menu(ex : animals,computers,food, useradd...)  
 ```
+## Tip
 
+You can edit names of menu entries and paths to their respective directories to your preference.
