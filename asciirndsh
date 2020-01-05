@@ -1,0 +1,554 @@
+#!/bin/bash
+
+
+#back funcs:
+
+function mainagain() {
+    main
+    case $ANSWER in
+    animals|1|Animals)
+        animalch
+        
+        ;;
+
+    computers|2|Computers)
+        compexec       
+        ;;    
+
+    food|3|Food)
+        foodexec
+        ;;
+
+    useraddittions|4|Useraddittions|useradd)
+       clear
+        echo "$(ls /usr/local/bin/db/useradd)"
+        read -p ">" ANSWERCAT
+        if [ "$ANSWERCAT" != "" ]
+        then
+            if [ -d /usr/local/bin/db/useradd/"$ANSWERCAT" ]
+            then
+                newcatfuncexec
+            elif [ /usr/local/bin/db/useradd/"$ANSWERCAT" != -d ]
+            then
+                echo "Enter valid category"
+                back
+
+            fi
+        else
+            echo "Enter valid category"
+            back    
+
+        fi
+      
+        ;;      
+
+    *)
+        main
+        ;;
+
+
+esac
+
+}
+
+function back() {
+    BACK=""
+    read -p "Do you want to go back to menu? (Y/n) " BACK
+    if [ "$BACK" == "Y" ]
+    then
+        mainagain
+    else
+        clear
+        exit
+    fi        
+
+}
+
+#choice funcs
+
+function cmduseradd() {
+
+    clear
+        echo "$(ls /usr/local/bin/db/useradd)"
+        read -p ">" ANSWERCAT
+        if [ "$ANSWERCAT" != "" ]
+        then
+            if [ -d /usr/local/bin/db/useradd/"$ANSWERCAT" ]
+            then
+                newcatfuncexec
+            elif [ /usr/local/bin/db/useradd/"$ANSWERCAT" != -d ]
+            then
+                echo "Enter valid category"
+                back
+
+            fi
+        else
+            echo "Enter valid category"
+            back    
+
+        fi
+}
+
+
+function animalch() {
+    clear
+    CAT1=""
+        echo "1) Cats"
+        echo "2) Dogs"
+        read -p ">" CAT1
+        case $CAT1 in
+            cats|1|Cats)
+                catsexec
+                ;;
+            dogs|2|Dogs)
+                dogsexec
+                ;;
+            *)
+                back
+                ;;        
+        esac
+
+}
+
+
+
+
+#random funcs:
+
+function computers() {
+   ran=$(ls /usr/local/bin/db/computers/* | shuf -n 1)
+    cat $ran
+
+}
+
+function newcatfunc() {
+    if [ "$(ls -A /usr/local/bin/db/useradd/$ANSWERCAT)" ]
+    then
+        ran=$(ls /usr/local/bin/db/useradd/$ANSWERCAT/* | shuf -n 1)
+        cat $ran
+    else 
+        echo "There is no art in this category!"
+        back
+
+    fi    
+
+}
+
+
+function animals() {
+    ran1=$(ls /usr/local/bin/db/animals/* | shuf -n 1)
+    cat $ran1
+
+}
+
+function useradd() {
+    if [ ! "$(ls -A /usr/local/bin/db/useradd/rnd)" ]
+    then
+    echo "There is no art here!"
+    echo "Add it with:  asciiscript -f <path> "
+    echo
+    back
+    else
+    ran1=$(ls /usr/local/bin/db/useradd/rnd/* | shuf -n 1)
+    fi
+
+    cat $ran1
+
+}
+
+function food(){
+    ran2=$(ls /usr/local/bin/db/food/* | shuf -n 1)
+    cat $ran2
+}
+
+function cats(){
+    ran2=$(ls /usr/local/bin/db/cats/* | shuf -n 1)
+    cat $ran2
+}
+
+function dogs(){
+    ran3=$(ls /usr/local/bin/db/dogs/* | shuf -n 1)
+    cat $ran3
+}
+
+
+
+
+
+
+#exec funcs:
+
+
+function catsexec(){
+    ANS5=""
+    until [ "$ANS5" == "n" ]
+    do
+        clear
+        cats
+        echo
+        read -p "Continue? (ENTER/n) " ANS5
+    done
+
+    back
+
+
+
+}
+
+function dogsexec(){
+    ANS6=""
+    until [ "$ANS6" == "n" ]
+    do
+        clear
+        dogs
+        echo
+        read -p "Continue? (ENTER/n) " ANS6
+    done
+
+    back
+
+
+
+}
+
+
+function newcatfuncexec(){
+    ANS11=""
+    until [ "$ANS11" == "n" ]
+    do
+        clear
+        newcatfunc
+        echo
+        read -p "Continue? (ENTER/n) " ANS11
+    done
+
+    back
+
+
+
+}
+
+
+function compexec(){
+    ANS1=""
+    until [ "$ANS1" == "n" ]
+    do
+        clear
+        computers
+        echo
+        read -p "Continue? (ENTER/n) " ANS1
+    done
+
+    back
+
+
+
+}
+
+
+function useraddexec(){
+        clear
+        echo
+        useradd
+        echo
+        exit
+
+
+
+}
+
+
+function animalexec(){
+    ANS2=""
+    until [ "$ANS2" ==  "n" ]
+    do
+        clear
+        animals
+        echo
+        read -p "Continue? (ENTER/n) " ANS2
+    done
+
+    back
+
+}
+
+function foodexec (){
+    ANS3=""
+    until [ "$ANS3" ==  "n" ]
+    do
+        clear
+        food
+        echo
+        read -p "Continue? (ENTER/n) " ANS3
+        
+    done
+
+    back 
+
+}
+
+#main func:
+
+function main() {
+    clear
+    #banner-size
+   
+
+    
+
+    ANSWER=""
+    while [ "$ANSWER" != "animals" ] && 
+     [ "$ANSWER" != "1" ]  &&
+     [ "$ANSWER" != "Animals" ]  &&
+     [ "$ANSWER" != "computers" ]  &&  
+     [ "$ANSWER" != "2" ]  &&  
+     [ "$ANSWER" != "Computers" ]  && 
+     [ "$ANSWER" != "food" ]  &&
+     [ "$ANSWER" != "3" ]  &&
+     [ "$ANSWER" != "Food" ] &&
+     [ "$ANSWER" != "useraddittions" ] &&
+     [ "$ANSWER" != "useradd" ] &&
+     [ "$ANSWER" != "4" ] &&
+     [ "$ANSWER" != "Useraddittions" ]
+        do
+            clear
+            tput setaf 1;
+            
+            
+           echo -e "                 _ _                      _           _  ";
+           echo -e "   __ _ ___  ___(_|_)      _ __ _ __   __| |      ___| |__";
+           echo -e "  / _  / __|/ __| | |_____| '__| '_ \ / _  |_____/ __| '_ \ "
+           echo -e " | (_| \__ \ (__| | |_____| |  | | | | (_| |_____\__ \ | | |";
+           echo -e "  \__,_|___/\___|_|_|     |_|  |_| |_|\__,_|     |___/_| |_| ";
+           echo -e "                                                                             by Marko Žlender";
+           echo -e "
+                                                                                                                                v 1.0.0          ";                                           
+        
+         tput sgr0;                                                                                                 
+            echo
+            echo -e "\e[32mChoose category: (e to exit)\e[0m"
+            echo
+            tput setaf 6;
+            echo " ______________________"
+            echo "|  1. animals          |"
+            echo "|  2. computers        |"
+            echo "|  3. food             |"
+            echo "|  4. useradd(ittions) |"
+            echo "|——————————————————————|"
+            tput sgr0;
+            read -p ">" ANSWER   
+            if [ "$ANSWER" == "e" ]
+            then
+                clear
+                exit
+            fi
+
+            
+    done   
+   
+}
+
+#arguments
+
+if [ "$1" != "" ]
+    then
+        case $1 in
+            --animals)
+                animalch 
+                ;;
+
+            --computers)
+                compexec
+                ;;
+
+            --food)
+                foodexec
+                ;;
+
+            --useradd)
+                cmduseradd
+                ;;
+
+            -f | --file)
+                if [ $2 != "" ]
+                then
+                    case $2 in
+                        *.txt)
+                            cp $* /usr/local/bin/db/useradd/rnd
+                            echo "New art added!"
+                            exit
+                            ;;
+                        *)
+                            echo "ERROR: File must be a .txt file!"
+                            exit
+                         ;;    
+
+
+
+                    esac
+
+                fi
+
+                
+                    ;;
+
+            -a | --add-category)
+            if [ $2 != "" ]
+        	then
+                mkdir /usr/local/bin/db/useradd/$2 2>/dev/null
+                echo "New category added!"
+                sleep 1.7
+               if [ $3 != "" ]
+                 then
+                 case $3 in
+                    *.txt)
+
+                        cp $* /usr/local/bin/db/useradd/$2 2>/dev/null
+                        echo "New art added!"
+                        exit
+                     ;;
+
+                    *)
+                            echo "ERROR: Files have to be .txt files!"
+                
+                            exit
+                    ;;    
+
+                 esac
+
+            fi
+ 
+                
+            fi  
+            ;;
+
+            -rmc | --remove-category)
+            if [ "$2" != "" ]
+            then
+                read -p "Remove $2 category?" DELCAT
+                if [ $DELCAT == Y ]
+                then
+                    if [ -d /usr/local/bin/db/useradd/$2  ]
+                    then
+                        rm -rf /usr/local/bin/db/useradd/$2
+                        echo "$2 removed"
+                        exit
+                    else
+                        echo "$2 is not valid category"
+                        exit    
+                    fi   
+                else
+                    echo "Not removed"
+                    exit
+
+
+                fi
+
+            else
+                echo "Enter a valid category"   
+                exit 
+
+
+
+
+
+            fi
+
+            ;;
+                
+                 
+
+
+            -h | --help)
+                echo "Usage:"
+                echo " asciirndsh [option] [arguments]"
+                echo
+                echo "Options:"
+                echo "  -a, --add-category SOURCE                        add new category and new art in it"                       
+                echo "  -f, --file SOURCE                                add new .txt file as an new art"
+                echo "  -h, --help                                       show this help page"
+                echo "  -rmc, --remove-category                          remove category and all art under it"
+                echo "  --<category>                                     run the desired category of art without menu(ex : animals,computers,food, useradd...)"
+                echo 
+                exit
+                ;; 
+            -rnd | --random)
+                useraddexec
+                ;;                
+
+            *)
+                echo
+                echo "Invalid option or argument!"
+                echo
+                echo "Usage:"
+                echo " asciirndsh [option] [arguments]"
+                echo
+                echo "Options:" 
+                echo "  -a, --add-category SOURCE                        add new category and new art in it"                       
+                echo "  -f, --file SOURCE                                add new .txt file as an new art"
+                echo "  -h, --help                                       show this help page"
+                echo "  -rmc, --remove-category                          remove category and all art under it"
+                echo "  --<category>                                     run the desired category of art without menu(ex : animals,computers,food, useradd...)"
+                echo 
+                exit
+                ;;
+        esac
+fi              
+
+
+#executing main function
+
+main
+
+
+
+#cases:
+
+case $ANSWER in
+    animals|1|Animals)
+        animalch
+        
+        ;;
+
+    computers|2|Computers)
+        compexec       
+        ;;    
+
+    food|3|Food)
+        foodexec
+        ;;
+
+    useraddittions|4|Useraddittions|useradd)
+        clear
+        echo "$(ls /usr/local/bin//db/useradd)"
+        read -p ">" ANSWERCAT
+        if [ "$ANSWERCAT" != "" ]
+        then
+            if [ -d /usr/local/bin/db/useradd/$ANSWERCAT ]
+            then
+                newcatfuncexec
+            elif [ /usr/local/bin/db/useradd/$ANSWERCAT != -d ]
+            then
+                echo "Enter valid category"
+                back
+
+            fi
+        else
+            echo "Enter valid category"
+            back    
+
+        fi
+        ;;   
+   
+
+    *)
+        main
+        ;;
+
+
+esac
+
+
+
+
+ 
