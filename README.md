@@ -1,6 +1,6 @@
 ![](https://github.com/sucyfer/asciirndsh/blob/master/screenshots/Screenshot_1.png)
 
-# asciirndsh
+# asciirndsh ![GitHub](https://img.shields.io/github/license/sucyfer/asciirndsh?color=red)   ![Maintenance](https://img.shields.io/maintenance/yes/2020)  ![GitHub top language](https://img.shields.io/github/languages/top/sucyfer/asciirndsh)
 Simple bash script for generating random ascii art
 
 ## Installation
