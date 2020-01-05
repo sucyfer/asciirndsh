@@ -34,4 +34,4 @@ Options:
 ```
 ## Tip
 
-You can edit names of menu entries and paths to their respective directories to your preference.
+In code, you can edit names of menu entries and paths to their respective directories to your preference.
